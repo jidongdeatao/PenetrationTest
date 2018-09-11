@@ -1,0 +1,42 @@
+渗透测试平台类：
+
+    Metasploit，这个大家都不陌生了，集信息收集，预渗透，渗透，后渗透，木马，社会工程学于一体的平台，居家旅行，杀人越货之必备。
+                  SET（Social-engineer-toolkit） 主要用来做社工平台，邮件伪造，dns劫持，以及office钓鱼。
+    Cobaltstrike，目前来说最好用的针对windows的渗透平台，也是目前最牛逼的APT协同工作平台。扩展性很强，兼容各种平台，独立的框架，不依赖于其他框架，
+                  提供了丰富的第三方接口，可以进行内网渗透，社工钓鱼，木马远控以及你所想要的功能，虽说是商业软件，但是好像大家都可以轻易破解，实际里面暗桩很多，使用者请自行分析。
+    Empire，针对内网渗透的利器，跨平台的特性，类似metasploit的功能，有丰富的模块和接口，可自行添加模块和功能，
+                  针对powershell利用的最好平台，没有之一。
+    Empyre，针对*nix平台的渗透测试平台，针对Macos的可能会更多一些，功能类似Empire，请自行研究
+    Beef,浏览器渗透框架项目，用过的人都说好。
+
+端口转发及代理类：
+针对内网渗透，端口转发和代理是一个老司机必备的技能，只聊聊自己常用的fpipe，windows下面的端口转发软件，比较老牌的工具，使用场景有限。
+    sockscap，老牌的socks代理工具，主要针对windows平台的端口转发和代理转发。
+    proxifier，跨平台的端口转发和代理工具，适用windows，linux，Macos平台，代理转发利器
+    Rsscoks，＊nix平台下的端口转发和代理工具，配合proxychains好用到不行。
+    Proxychains ＊nix平台下老牌的socks代理工具，一般的系统都会自带，谁用谁知道。
+    ssh proxy，通过ssh做端口代理和转发，一般＊nix系统都自带。
+    netcat，socat，hping，在很多情况下可以做端口转发和数据代理转发。
+    metasploit 的后渗透模块中有不少代理模块和端口转发模块。
+
+ 
+
+端口扫描类
+内网端口扫描有很多软件，除去各位老司机自己写的脚本类和私有工具，公开的以及常用的有下面这些扫描器，早期的比较快速的端口扫描工具，运行于windows平台
+    mt.exe 国内比较早的一个针对2k和2k3的渗透工具集
+    hd.exe 早起国内某大神修改的mt的升级版，牛逼到爆
+    nmap ，不多说，老司机都用它
+    fscan foundstone出品的比较早的命令行扫描工具，windows平台内网扫描必备
+    metasploit的各种端口扫描模块，各位老司机用的也比较多
+    nc.exe 做小范围端口扫描还是比较合适的
+    Portscan.ps1,全球最大的搞基平台gayhub上有各种大神写的针对windows端口扫描的powershell脚本，请自行搜索。
+
+ 
+
+Powershell 脚本类
+除了前面说的empire，还有很多优秀的powershell脚本利用框架和平台spraywmi 针对wmi批量利用的工具，运行于各种平台之上
+    powersploit 比较早起的powershell脚本集合，域渗透必备
+    PowerTools  后期比较全的针对windows平台渗透的powershell脚本
+    nishang 开启了针对powershell利用的先河，powershell利用工具鼻祖
+    PowerShell-AD-Recon  针对windows域管理的各种脚本，域渗透必备
+    其他各种根据需求请自行去github搜索。
