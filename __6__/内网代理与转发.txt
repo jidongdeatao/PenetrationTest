@@ -1,0 +1,10 @@
+1.1 正向代理(Forward Proxy)
+Lhost－－》proxy－－》Rhost
+Lhost为了访问到Rhost，向proxy发送了一个请求并且指定目标是Rhost，然后proxy向Rhost转交请求并将获得的内容返回给Lhost，
+简单来说正向代理就是proxy代替了我们去访问Rhost。
+1.2 反向代理（reverse proxy）
+Lhost<--->proxy<--->firewall<--->Rhost
+和正向代理相反（废话），Lhost只向proxy发送普通的请求，具体让他转到哪里，proxy自己判断，然后将返回的数据递交回来，
+这样的好处就是在某些防火墙只允许proxy数据进出的时候可以有效的进行穿透
+1.3 简单区分
+正向代理是我们自己(Lhost)戴套(proxy)插进去，反向代理是她(Rhost)主动通过上位(proxy)坐上来(Lhost)
