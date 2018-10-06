@@ -21,3 +21,12 @@
    域渗透
    arp是最后选择的内网渗透方案
    
+七、痕迹清理
+      若是Win系统，可利用Kali Linux中的Metasploit中的clearev的工具删除Log文件
+      或者安装Windows日志清理工具Clearlogs:下载地址
+      手工执行命令: del %WINDR%\* .log /a/s/q/f
+      2.Linux系统
+      删除/var/log下的文件即可: rm -f -r /var/log
+      另外在bash shell中也保存了最后500条命令的记录，用more ~/.bash_history即可看到
+         使用命令：export HISTSIZE=0 即可删除
+         也有一个更快删除历史文件的方法：使用命令   shred -zu /root/.bash_history即可彻底清除所有的历史纪录文件并用空字符去覆盖文件。
